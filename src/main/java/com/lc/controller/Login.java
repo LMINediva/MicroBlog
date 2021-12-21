@@ -18,7 +18,7 @@ import java.io.IOException;
         urlPatterns = {"/login.do"},
         initParams = {
                 @WebInitParam(name = "SUCCESS_VIEW", value = "message.do"),
-                @WebInitParam(name = "ERROR_VIEW", value = "index.html")
+                @WebInitParam(name = "ERROR_VIEW", value = "index.jsp")
         }
 )
 public class Login extends HttpServlet {
@@ -35,13 +35,16 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String page = ERROR_VIEW;
+        String page;
 
         UserService userService = (UserService) getServletContext().getAttribute("userService");
         if (userService.checkLogin(username, password)) {
             request.getSession().setAttribute("login", username);
             page = SUCCESS_VIEW;
+        } else {
+            request.setAttribute("error", "名称或密码错误");
+            page = ERROR_VIEW;
         }
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

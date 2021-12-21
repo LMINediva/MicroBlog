@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>会员：${param.username}注册成功</h1>
-<a href="index.html">回首页登录</a>
+<a href="index.jsp">回首页登录</a>
 </body>
 </html>

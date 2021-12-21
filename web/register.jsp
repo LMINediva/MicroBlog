@@ -1,20 +1,40 @@
+<%@page pageEncoding="UTF-8" import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>八卦微博</title>
     <meta charset="UTF-8">
+    <title>八卦微博</title>
 </head>
 <body>
+<%
+    List<String> errors = (List<String>) request.getAttribute("errors");
+    if (errors != null) {
+%>
+<h1>新增会员失败</h1>
+<ul style="color: rgb(255, 0, 0);">
+    <%
+        for (String error : errors) {
+    %>
+    <li><%= error %></li>
+    <%
+        }
+    %>
+</ul><br>
+<%
+    }
+%>
 <h1>会员注册</h1>
 <form action="register.do" method="post">
     <table style="background-color: #cccccc">
         <tr>
             <td><label for="email">邮箱地址：</label></td>
-            <td><input type="text" id="email" name="email" size="25" maxlength="100"></td>
+            <td><input type="text" id="email" name="email"
+                       size="25" maxlength="100" value="${ param.email }"></td>
         </tr>
         <tr>
             <td><label for="username">名称（最大16字符）：</label></td>
-            <td><input type="text" id="username" name="username" size="25" maxlength="16"></td>
+            <td><input type="text" id="username" name="username"
+                       size="25" maxlength="16" value="${ param.username }"></td>
         </tr>
         <tr>
             <td><label for="password">密码（6到16字符）：</label></td>

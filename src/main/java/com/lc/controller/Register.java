@@ -20,7 +20,7 @@ import java.util.List;
         urlPatterns = {"/register.do"},
         initParams = {
                 @WebInitParam(name = "SUCCESS_VIEW", value = "success.jsp"),
-                @WebInitParam(name = "ERROR_VIEW", value = "error.jsp")
+                @WebInitParam(name = "ERROR_VIEW", value = "register.jsp")
         }
 )
 public class Register extends HttpServlet {
