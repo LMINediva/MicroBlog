@@ -15,6 +15,10 @@ public class UserService {
         this.USERS = USERS;
     }
 
+    public boolean isUserExisted(String username) {
+        return isInvalidUsername(username);
+    }
+
     /**
      * 是否为不合法用户名称
      *
