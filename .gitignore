@@ -23,9 +23,10 @@
 hs_err_pid*
 
 # IDEA Project configuration
-.idea/
+/.idea/
 MicroBlog.iml
 
 #Test the environment class file
-out/
-web/WEB-INF/classes/
+/out/
+/web/WEB-INF/classes/
+/web/WEB-INF/lib/
