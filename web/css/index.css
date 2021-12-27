@@ -24,3 +24,14 @@ a {
     width: 250px;
     float: left;
 }
+
+table {
+    text-align: left;
+    width: 510px;
+    height: 88px;
+    border: 0;
+}
+
+td {
+    vertical-align: top;
+}

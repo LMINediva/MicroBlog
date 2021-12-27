@@ -27,6 +27,6 @@ hs_err_pid*
 MicroBlog.iml
 
 #Test the environment class file
-/out/
+/out/*
 /web/WEB-INF/classes/
 /web/WEB-INF/lib/

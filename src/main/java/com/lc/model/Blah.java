@@ -44,4 +44,42 @@ public class Blah implements Serializable {
     public void setTxt(String txt) {
         this.txt = txt;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Blah other = (Blah) obj;
+        if (date == null) {
+            if (other.date != null) {
+                return false;
+            }
+        } else if (!date.equals(other.date)) {
+            return false;
+        }
+        if (username == null) {
+            if (other.username != null) {
+                return false;
+            } else if (!username.equals(other.username)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

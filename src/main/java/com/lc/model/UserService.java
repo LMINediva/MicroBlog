@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class UserService {
     private String USERS;
+    private LinkedList<Blah> newest = new LinkedList<Blah>();
 
     public UserService(String USERS) {
         this.USERS = USERS;
@@ -150,6 +151,10 @@ public class UserService {
                 new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
         writer.write(blah.getTxt());
         writer.close();
+        newest.addFirst(blah);
+        if (newest.size() > 20) {
+            newest.removeLast();
+        }
     }
 
     /**
@@ -162,6 +167,11 @@ public class UserService {
                 blah.getDate().getTime() + ".txt");
         if (file.exists()) {
             file.delete();
+            newest.remove(blah);
         }
+    }
+
+    public List<Blah> getNewest() {
+        return newest;
     }
 }
