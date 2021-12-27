@@ -1,6 +1,7 @@
 <%@page pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="lc" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -19,27 +20,7 @@
         <li>分享讯息也可以</li>
         <li>随意谢谢表心情</li>
     </ul>
-    <table>
-        <thead>
-        <tr>
-            <th>
-                <hr>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="blah" items="${applicationScope.userService.newest}">
-            <tr>
-                <td>
-                        ${blah.username}<br>
-                    <c:out value="${blah.txt}"/><br>
-                    <fmt:formatDate value="${blah.date}" type="both" dateStyle="full" timeStyle="full"/>
-                    <hr>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    <lc:Blahs/>
 </div>
 <a href="register.jsp">还不是会员？</a>
 <div style="color: rgb(255, 0, 0); ">

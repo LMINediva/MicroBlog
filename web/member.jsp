@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="lc" tagdir="/WEB-INF/tags" %>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -26,29 +27,7 @@
     <br>
     <button type="submit">发布</button>
 </form>
-<table style="text-align: left; width: 510px; height: 88px; border: 0; ">
-    <thead>
-    <tr>
-        <th>
-            <hr>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="blah" items="${ requestScope.blahs }">
-        <tr>
-            <td style="vertical-align: top; ">
-                    ${ blah.username } <br>
-                <c:out value="${blah.txt}"/><br>
-                <fmt:formatDate value="${blah.date}" type="both"
-                                dateStyle="full" timeStyle="full"/>
-                <a href="delete.do?message=${blah.date.time}">删除</a>
-                <hr>
-            </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<lc:Blahs/>
 <hr style="width: 100%; height: 1px; ">
 </body>
 </html>
