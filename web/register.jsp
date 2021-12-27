@@ -1,4 +1,5 @@
-<%@page pageEncoding="UTF-8" import="java.util.*" %>
+<%@page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,23 +7,15 @@
     <title>八卦微博</title>
 </head>
 <body>
-<%
-    List<String> errors = (List<String>) request.getAttribute("errors");
-    if (errors != null) {
-%>
-<h1>新增会员失败</h1>
-<ul style="color: rgb(255, 0, 0);">
-    <%
-        for (String error : errors) {
-    %>
-    <li><%= error %></li>
-    <%
-        }
-    %>
-</ul><br>
-<%
-    }
-%>
+<c:if test="${ requestScope.errors != null }">
+    <h1>新增会员失败</h1>
+    <ul style="color: rgb(255, 0, 0);">
+        <c:forEach var="error" items="${ requestScope.errors }">
+            <li>${ error }</li>
+        </c:forEach>
+    </ul>
+    <br>
+</c:if>
 <h1>会员注册</h1>
 <form action="register.do" method="post">
     <table style="background-color: #cccccc">

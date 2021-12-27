@@ -1,5 +1,7 @@
-<%@page import="java.util.*, java.text.*, com.lc.model.Blah" %>
+<%@page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -15,16 +17,9 @@
 </div>
 <form method="post" action="message.do">
     <label for="blabla">分享新鲜事...</label><br>
-    <%
-        String blabla = request.getParameter("blabla");
-        if (blabla == null) {
-            blabla = "";
-        } else {
-    %>
-    信息要在140字以内<br>
-    <%
-        }
-    %>
+    <c:if test="${ requestScope.blabla != null }">
+        信息要在140字以内<br>
+    </c:if>
     <textarea id="blabla" cols="60" rows="4" name="blabla">
         ${ requestScope.blabla }
     </textarea>
@@ -40,23 +35,18 @@
     </tr>
     </thead>
     <tbody>
-    <%
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.FULL, Locale.CHINA);
-        List<Blah> blahs = (List<Blah>) request.getAttribute("blahs");
-        for (Blah blah : blahs) {
-    %>
-    <tr>
-        <td style="vertical-align: top; ">
-            <%= blah.getUsername() %> <br>
-            <%= blah.getTxt() %> <br>
-            <%= dateFormat.format(blah.getDate()) %>
-            <a href="delete.do?message=<%= blah.getDate().getTime() %>">删除</a>
-            <hr>
-        </td>
-    </tr>
-    <%
-        }
-    %>
+    <c:forEach var="blah" items="${ requestScope.blahs }">
+        <tr>
+            <td style="vertical-align: top; ">
+                    ${ blah.username } <br>
+                <c:out value="${blah.txt}"/><br>
+                <fmt:formatDate value="${blah.date}" type="both"
+                                dateStyle="full" timeStyle="full"/>
+                <a href="delete.do?message=${blah.date.time}">删除</a>
+                <hr>
+            </td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
 <hr style="width: 100%; height: 1px; ">
