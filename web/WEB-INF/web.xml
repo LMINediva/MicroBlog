@@ -6,10 +6,6 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <context-param>
-        <param-name>USERS</param-name>
-        <param-value>F:/Projects/JSP/MicroBlog/out/artifacts/MicroBlog_war_exploded/WEB-INF/users</param-value>
-    </context-param>
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
@@ -17,4 +13,10 @@
             <default-content-type>text/html</default-content-type>
         </jsp-property-group>
     </jsp-config>
+    <resource-ref>
+        <res-ref-name>jdbc/gossip</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

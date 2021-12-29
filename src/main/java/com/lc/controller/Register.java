@@ -1,5 +1,6 @@
 package com.lc.controller;
 
+import com.lc.model.Account;
 import com.lc.model.UserService;
 
 import javax.servlet.ServletException;
@@ -40,24 +41,24 @@ public class Register extends HttpServlet {
         String password = request.getParameter("password");
         String confirmedPasswd = request.getParameter("confirmedPasswd");
 
-        UserService userService = (UserService) getServletContext().getAttribute("userService");
-
         List<String> errors = new ArrayList<>();
         if (isInvalidEmail(email)) {
             errors.add("未填写邮件或邮件格式不正确！");
         }
-        if (userService.isInvalidUsername(username)) {
-            errors.add("用户名称为空或已存在！");
-        }
         if (isInvalidPassword(password, confirmedPasswd)) {
             errors.add("请确认密码符合格式并再次确认密码！");
+        }
+        Account account = new Account(username, password, email);
+        UserService userService = (UserService) getServletContext().getAttribute("userService");
+        if (userService.isUserExisted(account)) {
+            errors.add("用户名称为空或已存在！");
         }
         String resultPage = ERROR_VIEW;
         if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
         } else {
             resultPage = SUCCESS_VIEW;
-            userService.createUserData(email, username, password);
+            userService.add(account);
         }
 
         request.getRequestDispatcher(resultPage).forward(request, response);

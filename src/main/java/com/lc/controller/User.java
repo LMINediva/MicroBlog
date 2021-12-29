@@ -1,5 +1,6 @@
 package com.lc.controller;
 
+import com.lc.model.Account;
 import com.lc.model.Blah;
 import com.lc.model.UserService;
 
@@ -37,7 +38,9 @@ public class User extends HttpServlet {
                 (UserService) getServletContext().getAttribute("userService");
 
         String username = request.getPathInfo().substring(1);
-        if (userService.isUserExisted(username)) {
+        Account account = new Account();
+        account.setName(username);
+        if (userService.isUserExisted(account)) {
             Blah blah = new Blah();
             blah.setUsername(username);
             List<Blah> blahs = userService.getBlahs(blah);
