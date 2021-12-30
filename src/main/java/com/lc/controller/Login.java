@@ -42,10 +42,11 @@ public class Login extends HttpServlet {
         Account account = new Account();
         account.setName(username);
         account.setPassword(password);
-        if (userService.checkLogin(account)) {
+        try {
+            request.login(username, password);
             request.getSession().setAttribute("login", username);
             page = SUCCESS_VIEW;
-        } else {
+        } catch (ServletException ex) {
             request.setAttribute("error", "名称或密码错误");
             page = ERROR_VIEW;
         }

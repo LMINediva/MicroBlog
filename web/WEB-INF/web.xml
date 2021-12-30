@@ -19,4 +19,28 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Member</web-resource-name>
+            <url-pattern>/delete.do</url-pattern>
+            <url-pattern>/logout.do</url-pattern>
+            <url-pattern>/message.do</url-pattern>
+            <url-pattern>/member.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>member</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/index.jsp</form-login-page>
+            <form-error-page>/index.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>member</role-name>
+    </security-role>
 </web-app>

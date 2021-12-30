@@ -64,21 +64,44 @@ public class AccountDAOJdbcImpl implements AccountDAO {
     public void addAccount(Account account) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
         SQLException ex = null;
         try {
             conn = dataSource.getConnection();
             stmt = conn.prepareStatement(
                     "INSERT INTO t_account(name, password, email) VALUES (?, ?, ?)");
+            stmt2 = conn.prepareStatement(
+                    "INSERT INTO t_account_role(name, role) VALUES (?, 'member')");
             stmt.setString(1, account.getName());
             stmt.setString(2, account.getPassword());
             stmt.setString(3, account.getEmail());
+            stmt2.setString(1, account.getName());
+            conn.setAutoCommit(false);
             stmt.executeUpdate();
+            stmt2.executeUpdate();
+            conn.commit();
         } catch (SQLException e) {
             ex = e;
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException e1) {
+                    ex.setNextException(e1);
+                }
+            }
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
+                } catch (SQLException e) {
+                    if (ex == null) {
+                        ex = e;
+                    }
+                }
+            }
+            if (stmt2 != null) {
+                try {
+                    stmt2.close();
                 } catch (SQLException e) {
                     if (ex == null) {
                         ex = e;
