@@ -21,9 +21,7 @@
     <c:if test="${ requestScope.blabla != null }">
         信息要在140字以内<br>
     </c:if>
-    <textarea id="blabla" cols="60" rows="4" name="blabla">
-        ${ requestScope.blabla }
-    </textarea>
+    <textarea id="blabla" cols="60" rows="4" name="blabla">${ requestScope.blabla }</textarea>
     <br>
     <button type="submit">发布</button>
 </form>

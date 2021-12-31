@@ -46,7 +46,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"><a href="forgot.html">忘记密码？</a></td>
+            <td colspan="2"><a href="forget.jsp">忘记密码？</a></td>
         </tr>
     </table>
 </form>

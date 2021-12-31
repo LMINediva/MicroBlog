@@ -11,6 +11,8 @@ public class UserService {
     private LinkedList<Blah> newest = new LinkedList<>();
     private AccountDAO accountDAO;
     private BlahDAO blahDAO;
+    private MailCarrier mailCarrier;
+    private String template;
 
     public UserService(String USERS,
                        AccountDAO userDAO, BlahDAO blahDAO) {
@@ -20,6 +22,11 @@ public class UserService {
     public UserService(AccountDAO userDAO, BlahDAO blahDAO) {
         this.accountDAO = userDAO;
         this.blahDAO = blahDAO;
+    }
+
+    public UserService(AccountDAO userDAO, BlahDAO blahDAO, MailCarrier mailCarrier) {
+        this(userDAO, blahDAO);
+        this.mailCarrier = mailCarrier;
     }
 
     public boolean isUserExisted(Account account) {
@@ -73,5 +80,27 @@ public class UserService {
 
     public List<Blah> getNewest() {
         return newest;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+
+    public boolean sendPasswordTo(Account account) {
+        Account acct = accountDAO.getAccount(account);
+        if (acct != null && acct.getEmail().equals(account.getEmail())) {
+            String subject = account.getName() + "的微博密码";
+            String content = null;
+            if (template == null) {
+                content = account.getName() + "您好！您的密码是：" +
+                        acct.getPassword();
+            } else {
+                content = template.replace("#name", account.getName())
+                        .replace("#password", acct.getPassword());
+            }
+            mailCarrier.sendTo(account, subject, content);
+            return true;
+        }
+        return false;
     }
 }
