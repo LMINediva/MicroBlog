@@ -24,11 +24,11 @@
 
 ### 注销用户后展示最近博客
 
-![注销用户后展示最近文章](screenshots/screenshot6.png"注销用户后展示最近文章")
+![注销用户后展示最近文章](screenshots/screenshot6.png "注销用户后展示最近文章")
 
 ## 项目部署到Tomcat（版本：8.0.47）步骤如下：
 
-### 1、下载**[博客服务器端应用软件，版本号：v1.0](https://gitee.com/lminediva/MicroBlog/releases/v1.0)**项目发行版war包。
+### 1、下载[**博客服务器端应用软件，版本号：v1.0**](https://gitee.com/lminediva/MicroBlog/releases/v1.0)项目发行版war包。
 
 ### 2、将下载好的war包放到Tomcat安装目录下的webapps目录下。
 
