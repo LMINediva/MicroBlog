@@ -24,7 +24,7 @@
 
 ### 注销用户后展示最近博客
 
-![注销用户后展示最近文章](screenshots/screenshot6.png"注销用户后展示最近文章")
+![注销用户后展示最近文章](screenshots/screenshot6.png "注销用户后展示最近文章")
 
 ## 开发环境
 
