@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
@@ -29,5 +29,5 @@ MicroBlog.iml
 #Test the environment class file
 /out/*
 /web/WEB-INF/classes/
-/web/WEB-INF/lib/
-/web/WEB-INF/mail.properties
+#/web/WEB-INF/lib/
+#/web/WEB-INF/mail.properties
